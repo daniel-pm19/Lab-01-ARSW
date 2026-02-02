@@ -6,6 +6,8 @@
 package edu.eci.arsw.blacklistvalidator;
 
 import java.util.List;
+import java.util.Scanner;
+import java.lang.Runtime;
 
 /**
  *
@@ -13,11 +15,17 @@ import java.util.List;
  */
 public class Main {
     
-    public static void main(String a[]){
+    
+    public static void main(String a[]) throws InterruptedException{
         HostBlackListsValidator hblv=new HostBlackListsValidator();
-        List<Integer> blackListOcurrences=hblv.checkHost("200.24.34.55");
+        Scanner sc = new Scanner(System.in);
+        int availableProcessors = Runtime.getRuntime().availableProcessors();
+        System.out.println(availableProcessors);
+        System.out.print("Enter the number of threads: ");
+        int threadsNumber = sc.nextInt();
+        List<Integer> blackListOcurrences=hblv.checkHost("200.24.34.55", threadsNumber);
         System.out.println("The host was found in the following blacklists:"+blackListOcurrences);
-        
+        sc.close();
     }
     
 }
