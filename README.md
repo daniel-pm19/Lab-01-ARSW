@@ -184,15 +184,15 @@ Based on the above, if for this problem, instead of 100 threads on a single CPU,
 
 ## Execution
 
-Para compilar y ejecutar el proyecto:
+To compile and execute the project:
 
 ```bash
 mvn compile
 ```
 
-## Pruebas
+## Testing
 
-Ejecutar las pruebas unitarias:
+To execute the unit tests:
 
 ```bash
 mvn test
