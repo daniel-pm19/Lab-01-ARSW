@@ -23,7 +23,7 @@ This lab aims to provide practical experience in the topics covered in the lectu
 
 Based on what you've read, complete the CountThread classes so that they define the lifecycle of a thread that prints the numbers between A and B to the screen.
 
-[!alt img](/img/pt1.png)
+![alt text](/img/pt1.png)
 
 1. As we can see in the image we insert two digits as a range and it start printing all the numbers between them, a curious thing is that we put at the final of the code a print that says "All threads have finished" but is the first one to be printed, it happens because the main is also a thread and it proccess first the message than printing the numbers.
 
@@ -51,7 +51,7 @@ A component is being developed for automated computer security monitoring softwa
 For this part, we designed and implemented a solution to the problem using threads. We created a Thread class to represent the thread's lifecycle. Each thread performs a search across a pre-divided segment, based on the number of threads present. Each thread is responsible for finding occurrences of the IP address against blacklists. If more than five occurrences are found, the IP address is categorized as Thrustworthy; otherwise, it is considered Not Thrustworthy. Once finished, each thread waits for the others to complete before tallying the occurrences and making a decision.
 
 
-[!alt text](/img/1ThreadTest.png)
+![alt text](/img/1ThreadTest.png)
 
 
 
