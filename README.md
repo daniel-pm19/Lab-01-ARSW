@@ -57,7 +57,7 @@ For this part, we designed and implemented a solution to the problem using threa
 
 ## Part 3 - Performance Evaluation
 
-Based on the above, implement the following sequence of experiments to validate sparse IP addresses (e.g., 202.24.34.55), recording the execution times (make sure to run them on the same machine):
+Based on the above, implement the following sequence of experiments to validate sparse IP addresses (e.g., 202.24.34.55), recording the execution times (make sure to run them on the same machine), in this case We only attach images of the tests from one PC because both have 12 cores.:
 
 1. Single thread.
 
