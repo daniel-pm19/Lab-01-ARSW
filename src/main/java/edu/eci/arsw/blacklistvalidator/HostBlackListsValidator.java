@@ -6,7 +6,6 @@
 package edu.eci.arsw.blacklistvalidator;
 
 import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;
-import edu.eci.arsw.threads.SearchAvailableServer;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -30,9 +29,8 @@ public class HostBlackListsValidator {
      * NOT Trustworthy, and the list of the five blacklists returned.
      * @param ipaddress suspicious host's IP address.
      * @return  Blacklists numbers where the given host's IP address was found.
-     * @throws InterruptedException 
      */
-    public List<Integer> checkHost(String ipaddress, int threadNumber) throws InterruptedException{
+    public List<Integer> checkHost(String ipaddress, int threadNumber){
         
         LinkedList<Integer> blackListOcurrences=new LinkedList<>();
                 
@@ -60,12 +58,6 @@ public class HostBlackListsValidator {
         }
 
         int checkedListCount = 0;
-
-        for (SearchAvailableServer t : threads) {
-            t.join();
-            blackListOcurrences.addAll(t.getOccurrences());
-            checkedListCount += t.getCheckedCount();
-        }
 
         for(SearchAvailableServer t: threads){
             try{

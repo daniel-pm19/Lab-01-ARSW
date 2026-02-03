@@ -1,4 +1,4 @@
-package edu.eci.arsw.threads;
+package edu.eci.arsw.blacklistvalidator;
 import java.util.LinkedList;
 import java.util.List;
 import edu.eci.arsw.spamkeywordsdatasource.HostBlacklistsDataSourceFacade;

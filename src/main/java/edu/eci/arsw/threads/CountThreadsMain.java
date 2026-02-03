@@ -16,26 +16,25 @@ public class CountThreadsMain {
 
     public static void main(String[] args){
 
-        int result = 10/3;
-        System.out.println(result);
-
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Introduce a number A: ");
-        int a = sc.nextInt();
+        //System.out.print("Introduce a number A: ");
+        //int a = sc.nextInt();
 
-        System.out.print("Introduce a number B: ");
-        int b = sc.nextInt();
+        //System.out.print("Introduce a number B: ");
+        //int b = sc.nextInt();
 
         sc.close();
 
-        CountThread t1 = new CountThread();
+        CountThread t1 = new CountThread(0,99);
+        CountThread t2 = new CountThread(99, 199);
+        CountThread t3 = new CountThread(200, 299);
 
-        t1.countInterval(a, b);
-
-        t1.start();
+        t1.run();
+        t2.run();
+        t3.run();
             
-        System.out.println(" Todos los hilos han terminado");
+        System.out.println("All threads have finished");
     }
     
 }
