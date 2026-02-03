@@ -145,19 +145,81 @@ Based on the above, implement the following sequence of experiments to validate 
 **Graph of solution time vs. number of threads.**
 
 
-## Part 4 - QA
+## Part 4 – Quality Analysis (QA)
 
-According to Amdahls' Law:
+According to Amdahl’s Law, the theoretical speedup of a parallel algorithm depends on the
+parallelizable fraction of the code and the number of threads used. In theory, increasing the
+number of threads should improve performance, but in practice this improvement has clear limits.
 
-where S(n) is the theoretical performance improvement, P is the parallelizable fraction of the algorithm, and n is the number of threads. The larger n is, the greater the improvement should be.
+---
 
-- Why isn't the best performance achieved with 500 threads? 
+### Why isn’t the best performance achieved with 500 threads?
 
-- How does this performance compare when using 200 threads?
+Although Amdahl’s Law suggests that performance increases with more threads, the best
+performance is not achieved with 500 threads because the execution environment only has
+12 processing cores.
 
-- How does the solution behave using as many processing threads as cores compared to the result of using twice as many?
+When the number of threads greatly exceeds the number of available cores, the system suffers
+from significant overhead caused by:
 
-Based on the above, if for this problem, instead of 100 threads on a single CPU, one thread could be used on each of 100 hypothetical machines, would Amdahls' Law apply better? If, instead, c threads were used on 100/c distributed machines (where c is the number of cores on these machines), would the performance improve? Explain your answer.
+- Thread scheduling
+- Context switching
+- Synchronization costs
+- Contention for shared resources
+
+As observed in the experiment, most of the 500 threads are not executed in parallel but spend
+their time waiting for CPU resources, which outweighs the benefits of parallelism.
+
+---
+
+### How does this performance compare when using 200 threads?
+
+Using 200 threads shows a behavior very similar to the 500-thread case. Even though the
+number of threads is lower, it is still far greater than the number of available cores.
+
+As a result:
+
+- The CPU remains oversubscribed
+- Context-switching overhead remains high
+- No significant performance improvement is observed
+
+Compared to 500 threads, 200 threads slightly reduce overhead, but performance is still very
+similar or worse than when using a number of threads closer to the number of cores.
+
+---
+
+### How does the solution behave when using as many threads as cores versus twice as many?
+
+When using 12 threads, matching the number of processing cores, the solution achieves
+near-optimal performance:
+
+- Each thread can be mapped to a dedicated core
+- Minimal context switching
+- Efficient use of parallelism
+
+When using twice as many threads (24 threads), performance does not improve and may even
+slightly degrade because:
+
+- Threads compete for the same cores
+- Context-switching overhead increases
+- The parallelizable portion of the algorithm is already fully utilized
+
+---
+
+### Distributed execution and Amdahl’s Law
+
+If instead of running 100 threads on a single CPU, one thread were executed on each of
+100 hypothetical machines, Amdahl’s Law would apply more effectively because:
+
+- Each thread would have dedicated processing resources
+- CPU contention would be eliminated
+- Context-switching overhead would be minimal
+
+However, if c threads were executed on each of 100/c distributed machines, performance would only improve if communication and
+synchronization costs between machines remain low.
+
+In distributed environments, network latency and coordination overhead increase the
+non-parallelizable fraction of the algorithm, limiting the achievable speedup.
 
 
 ## Prerequisites
